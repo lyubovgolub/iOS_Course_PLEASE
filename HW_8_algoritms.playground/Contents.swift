@@ -1,11 +1,11 @@
 //пересекаются ли два прямоугольника
-print("Задайте прямоугольники 4мя значениями: Xmin, Xmax, Ymin, Ymax")
+print("Задайте прямоугольники 4мя значениями: Xmin, Ymin, Xmax, Ymax")
 
 func intersectionOfRectangles (rect1: [Int], rect2: [Int]) -> Bool {
-    return ((rect1[0] >= rect2[0] && rect1[0] <= rect2[1]) || (rect1[1] >= rect2[0] && rect1[1] <= rect2[1])) && ((rect1[2] >= rect2[2] && rect1[2] <= rect2[3]) || (rect1[3] >= rect2[2] && rect1[3] <= rect2[3]))
+    return !(rect1[2] < rect2[0] || rect1[0] > rect2[2] || rect1[1] > rect2[3] || rect1[3] < rect2[1] )
 }
-let rect2 = [-5, 7, -5, 5]
-let rect1 = [2, 10, 1, 9]
+let rect2 = [3, 5, 10, 8]
+let rect1 = [7, 6, 12, 20]
 
 
 print (intersectionOfRectangles(rect1: rect2, rect2: rect1))
@@ -30,13 +30,13 @@ func merge (leftArray: [Int], rightArray: [Int]) -> [Int] {
       let leftElement = leftArray[leftIndex]
       let rightElement = rightArray[rightIndex]
 
-      if leftElement < rightElement { // 2
+      if leftElement < rightElement {
         array.append(leftElement)
         leftIndex += 1
-      } else if leftElement > rightElement { // 3
+      } else if leftElement > rightElement {
         array.append(rightElement)
         rightIndex += 1
-      } else { // 4
+      } else {
         array.append(leftElement)
         leftIndex += 1
         array.append(rightElement)
@@ -44,7 +44,6 @@ func merge (leftArray: [Int], rightArray: [Int]) -> [Int] {
       }
     }
 
-    // 2
     while leftIndex < leftArray.count {
       array.append(leftArray[leftIndex])
       leftIndex += 1
